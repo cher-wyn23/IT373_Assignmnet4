@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cherwyn — Digital Library</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f6f8fb, #e3ebf8);
+            color: #333;
+            padding: 40px;
+        }
+
+        /* 🌟 Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+        }
+
+        header p {
+            color: #555;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* 📖 Book Section */
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .book {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .book h2 {
+            color: #1e40af;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .book p {
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+
+        .categories {
+            margin-top: 10px;
+        }
+
+        .category {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .category-section {
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+        }
+
+        .category-section h2 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        ul.category-list {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul.category-list li {
+            background: #f3f4f6;
+            padding: 8px 15px;
+            margin: 6px;
+            border-radius: 8px;
+            color: #374151;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        ul.category-list li:hover {
+            background: #dbeafe;
+            color: #1e3a8a;
+        }
+
+        /* 📱 Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .book {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📚 Cher_Library</h1>
+    <p>Explore books, authors, and categories — all in one place</p>
+</header>
+
+<section>
+    <div class="book-list">
+        {% for book in books %}
+            <div class="book">
+                <h2>{{ book.title }}</h2>
+                <p><strong>Author:</strong> {{ book.author.name }}</p>
+                <p><strong>Published:</strong> {{ book.published|date:"F d, Y" }}</p>
+                <div class="categories">
+                    <strong>Categories:</strong><br>
+                    {% for category in book.categories.all %}
+                        <span class="category">{{ category.name }}</span>
+                    {% empty %}
+                        <span>No category assigned</span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No books available.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="category-section">
+    <h2>🏷 All Categories</h2>
+    <ul class="category-list">
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% empty %}
+            <li>No categories found.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+</body>
+</html>
