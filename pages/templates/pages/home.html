@@ -1,10 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cherwyn — Digital Library</title>
-    <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherwyn Digital Library</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'pages/favicon.ico' %}">
 
+
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -12,118 +18,186 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f6f8fb, #e3ebf8);
-            color: #333;
-            padding: 40px;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f4f6fb, #eaf0f8);
+            color: #1f2937;
+            line-height: 1.6;
         }
 
-        /* 🌟 Header */
         header {
+            background: linear-gradient(90deg, #1e3a8a, #4338ca, #dc2626);
+            color: white;
             text-align: center;
-            margin-bottom: 40px;
+            padding: 60px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            color: #1e3a8a;
+            font-family: 'Merriweather', serif;
+            font-size: 2.7rem;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         header p {
-            color: #555;
-            margin-top: 8px;
-            font-style: italic;
+            font-size: 1rem;
+            margin-top: 12px;
+            color: #f3f4f6;
         }
 
-        /* 📖 Book Section */
+        .divider {
+            width: 120px;
+            height: 4px;
+            background: #fca5a5;
+            margin: 18px auto;
+            border-radius: 3px;
+        }
+
         .book-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 30px;
+            margin: 50px auto;
+            max-width: 1200px;
+            padding: 0 20px;
         }
 
         .book {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease-in-out;
+            background: linear-gradient(145deg, #ffffff, #f9fafb);
+            border: 1px solid #e5e7eb;
+            border-left: 6px solid #4338ca;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.35s ease;
         }
 
         .book:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
         }
 
         .book h2 {
-            color: #1e40af;
-            font-size: 1.3rem;
-            margin-bottom: 8px;
+            color: #1e3a8a;
+            font-family: 'Merriweather', serif;
+            font-size: 1.35rem;
+            margin-bottom: 10px;
         }
 
         .book p {
-            margin: 6px 0;
-            line-height: 1.5;
+            margin: 5px 0;
+            color: #374151;
         }
 
         .categories {
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .category {
             display: inline-block;
-            background: #dbeafe;
+            background: #e0e7ff;
             color: #1e3a8a;
             padding: 6px 12px;
             border-radius: 8px;
             font-size: 0.85rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            font-weight: 500;
+            margin: 3px;
         }
 
         .category-section {
-            margin-top: 50px;
+            margin: 60px auto;
             background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            padding: 35px 25px;
+            border-radius: 14px;
+            max-width: 1100px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .category-section h2 {
+            font-family: 'Merriweather', serif;
             color: #1e3a8a;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            border-left: 6px solid #dc2626;
+            padding-left: 12px;
         }
 
         ul.category-list {
-            list-style-type: none;
+            list-style: none;
             display: flex;
             flex-wrap: wrap;
+            gap: 12px;
         }
 
         ul.category-list li {
             background: #f3f4f6;
-            padding: 8px 15px;
-            margin: 6px;
-            border-radius: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
             color: #374151;
             font-weight: 500;
-            transition: background 0.3s;
+            border: 1px solid #d1d5db;
+            transition: all 0.3s ease;
         }
 
         ul.category-list li:hover {
-            background: #dbeafe;
-            color: #1e3a8a;
+            background: linear-gradient(90deg, #1e3a8a, #4338ca);
+            color: white;
+            border-color: #1e3a8a;
         }
 
-        /* 📱 Responsive */
-        @media (max-width: 600px) {
+
+        footer {
+            text-align: center;
+            background: linear-gradient(90deg, #1e3a8a, #4338ca);
+            color: #e5e7eb;
+            padding: 25px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
             }
-            .book {
-                padding: 15px;
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .book-list {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+
+            .category-section {
+                margin: 40px 10px;
+                padding: 25px;
+            }
+
+            ul.category-list {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            ul.category-list li {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            .book h2 {
+                font-size: 1.1rem;
+            }
+
+            .category-section h2 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -131,12 +205,13 @@
 <body>
 
 <header>
-    <h1>📚 Cher_Library</h1>
-    <p>Explore books, authors, and categories — all in one place</p>
+    <h1>Cherwyn Digital Library</h1>
+    <div class="divider"></div>
+    <p>Advancing knowledge through research, learning, and discovery</p>
 </header>
 
-<section>
-    <div class="book-list">
+<main>
+    <section class="book-list">
         {% for book in books %}
             <div class="book">
                 <h2>{{ book.title }}</h2>
@@ -152,21 +227,25 @@
                 </div>
             </div>
         {% empty %}
-            <p>No books available.</p>
+            <p style="text-align:center; font-weight:500;">No books available.</p>
         {% endfor %}
-    </div>
-</section>
+    </section>
 
-<section class="category-section">
-    <h2>🏷 All Categories</h2>
-    <ul class="category-list">
-        {% for category in categories %}
-            <li>{{ category.name }}</li>
-        {% empty %}
-            <li>No categories found.</li>
-        {% endfor %}
-    </ul>
-</section>
+    <section class="category-section">
+        <h2>All Categories</h2>
+        <ul class="category-list">
+            {% for category in categories %}
+                <li>{{ category.name }}</li>
+            {% empty %}
+                <li>No categories found.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+
+<footer>
+    © 2025 Cherwyn Digital Library — Empowering Minds Through Education
+</footer>
 
 </body>
 </html>
